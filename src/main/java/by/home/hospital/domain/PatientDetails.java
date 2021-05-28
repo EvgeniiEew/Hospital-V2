@@ -1,5 +1,6 @@
 package by.home.hospital.domain;
 
+import by.home.hospital.Enum.PatientStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -30,6 +31,11 @@ public class PatientDetails {
     @EqualsAndHashCode.Exclude
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "patientDetails", cascade = CascadeType.REMOVE)
-    private List<DiagnosisPatient> diagnosisPatients;
+    private List<Diagnosis> diagnosisList;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE)
+    private List<Events> events;
 }

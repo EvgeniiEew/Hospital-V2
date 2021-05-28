@@ -1,10 +1,9 @@
 package by.home.hospital.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import by.home.hospital.Enum.Position;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -12,7 +11,6 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -38,18 +36,8 @@ public class User {
     @OneToOne(mappedBy = "doctor", fetch = FetchType.EAGER)
     private DoctorDetails doctorDetails;
 
-
     @EqualsAndHashCode.Exclude
     @OneToOne(mappedBy = "patient", fetch = FetchType.EAGER)
     private PatientDetails patientDetails;
-
-    @JsonIgnore
-    @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    public List<AppointmentUsers> appointmentPatient;
-
-    @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    public List<AppointmentUsers> appointmentDoctor;
 
 }

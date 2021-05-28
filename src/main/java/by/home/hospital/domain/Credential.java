@@ -15,6 +15,7 @@ public class Credential {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     @Column(nullable = false, unique = true, updatable = false)
     private String email;
 
@@ -27,5 +28,4 @@ public class Credential {
     @EqualsAndHashCode.Exclude
     @OneToOne(mappedBy = "credentials", fetch = FetchType.LAZY)
     private User user;
-
 }

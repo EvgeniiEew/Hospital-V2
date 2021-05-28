@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,7 +22,10 @@ public class Diagnosis {
 
     private Date date;
 
-    @OneToMany(mappedBy = "diagnosis")
-    private List<DiagnosisPatient> diagnosisPatients;
-
+    @JsonIgnore
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne
+    @JoinColumn(name = "patientDetails_id")
+    private PatientDetails patientDetails;
 }

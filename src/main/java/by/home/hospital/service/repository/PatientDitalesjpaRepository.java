@@ -1,7 +1,7 @@
 package by.home.hospital.service.repository;
 
 import by.home.hospital.domain.PatientDetails;
-import by.home.hospital.domain.PatientStatus;
+import by.home.hospital.Enum.PatientStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.HashSet;
