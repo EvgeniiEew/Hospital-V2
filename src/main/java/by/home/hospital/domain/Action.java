@@ -28,6 +28,6 @@ public class Action {
     @EqualsAndHashCode.Exclude
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "events_id")
-    private Events events;
+    @JoinColumn(name = "event_id")
+    private Event event;
 }

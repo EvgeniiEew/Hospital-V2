@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.HashSet;
 
-public interface PatientDitalesjpaRepository extends JpaRepository<PatientDetails, Integer> {
+public interface PatientDetailsJpaRepository extends JpaRepository<PatientDetails, Integer> {
     HashSet<PatientDetails> findAllByStatus(PatientStatus status);
 
     PatientDetails getPatientDetailsById(Integer id);

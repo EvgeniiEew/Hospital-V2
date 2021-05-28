@@ -37,5 +37,5 @@ public class PatientDetails {
     @EqualsAndHashCode.Exclude
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE)
-    private List<Events> events;
+    private List<Event> events;
 }

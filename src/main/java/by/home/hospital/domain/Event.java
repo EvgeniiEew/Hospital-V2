@@ -14,10 +14,10 @@ import java.sql.Time;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Events {
+public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Name("events_id")
+    @Name("event_id")
     private Integer id;
     // id patient not user id
     @ToString.Exclude
@@ -46,6 +46,6 @@ public class Events {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToOne(mappedBy = "events", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "event", fetch = FetchType.LAZY)
     private Action action;
 }

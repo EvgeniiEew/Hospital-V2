@@ -31,7 +31,7 @@ public class WorkingDay {
     @EqualsAndHashCode.Exclude
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "workingDay", cascade = CascadeType.REMOVE)
-    private List<Events> eventsList;
+    private List<Event> eventList;
 
     @JsonIgnore
     @ToString.Exclude
