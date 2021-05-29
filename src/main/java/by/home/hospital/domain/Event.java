@@ -24,7 +24,7 @@ public class Event {
     @EqualsAndHashCode.Exclude
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "patientDetails_id")
     private PatientDetails patient;
 
     @Enumerated(EnumType.STRING)
