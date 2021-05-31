@@ -6,11 +6,13 @@ import by.home.hospital.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,7 +30,10 @@ public class UserController {
     }
 
     @PostMapping(value = "/list/savePatient")
-    public ResponseEntity<PatientRegisterDto> addPerson(@RequestBody PatientRegisterDto patientRegisterDto) {
+    public ResponseEntity<PatientRegisterDto> addPerson(@RequestBody @Valid PatientRegisterDto patientRegisterDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(patientRegisterDto, HttpStatus.OK);
+        }
         PatientRegisterDto newPatientRegisterDto = iUserService.saveUserFromPatientRegisterDto(patientRegisterDto);
         return new ResponseEntity<>(newPatientRegisterDto, HttpStatus.CREATED);
     }

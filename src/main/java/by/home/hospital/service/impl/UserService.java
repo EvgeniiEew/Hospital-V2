@@ -3,6 +3,7 @@ package by.home.hospital.service.impl;
 import by.home.hospital.Enum.Position;
 import by.home.hospital.domain.Credential;
 import by.home.hospital.domain.User;
+import by.home.hospital.dto.DoctorRegisterDto;
 import by.home.hospital.dto.PatientRegisterDto;
 import by.home.hospital.dto.UserEditDto;
 import by.home.hospital.service.ICredentialsService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -36,6 +38,11 @@ public class UserService implements IUserService {
     @Override
     public List<User> getUsers() {
         return userJpaRepo.findByOrderByFirstNameAsc();
+    }
+
+    @Override
+    public HashSet<User> findAllByPositionOrderByFirstNameDesc(Position position) {
+        return userJpaRepo.findAllByPositionOrderByFirstNameDesc(position);
     }
 
     @Override
@@ -74,5 +81,15 @@ public class UserService implements IUserService {
             ));
         });
         return dtoUsersList;
+    }
+
+    @Override
+    public User saveUserFromDoctorRegisterDto(DoctorRegisterDto doctorRegisterDto) {
+        User user = new User();
+        user.setFirstName(doctorRegisterDto.getFirstName());
+        user.setLastName(doctorRegisterDto.getLastName());
+        user.setPosition(Position.DOCTOR);
+        user.setCredentials(iCredentialsService.saveCredentialsFromDoctorRegisterDto(doctorRegisterDto));
+        return userJpaRepo.save(user);
     }
 }
